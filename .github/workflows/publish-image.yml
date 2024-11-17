@@ -14,5 +14,5 @@ jobs:
           docker buildx build --platform linux/arm/v7,linux/arm64/v8,linux/amd64,linux/386,linux/s390x,linux/ppc64le,linux/riscv64 --tag ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_IMAGE }}:latest .
       - name: publish
         run: |
-          docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_SECRET }}
+          echo ${{ secrets.DOCKER_SECRET }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
           docker push ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_IMAGE }}:latest
