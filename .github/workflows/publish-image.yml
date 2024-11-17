@@ -1,0 +1,18 @@
+name: Publish srt-live-server to Docker HUB
+on:
+  [workflow_dispatch]
+  
+jobs:
+  publish-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: build
+        run: |
+          docker buildx create --use
+          docker buildx build --platform linux/arm/v7,linux/arm64/v8,linux/amd64,linux/386,linux/s390x,linux/ppc64le,linux/riscv64 --tag ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_IMAGE }}:latest .
+      - name: publish
+        run: |
+          docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_SECRET }}
+          docker push ${{ secrets.DOCKER_USER }}/${{ secrets.DOCKER_IMAGE }}:latest
