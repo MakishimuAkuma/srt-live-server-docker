@@ -1,4 +1,4 @@
-# srt-live-server
+# srt-live-server v1.5.4
 Dockerized version of Edward Wu's SRT Live Server (SLS) and Haivision's SRT SDK
 All credit should go to the original tool author(s) - this is just a dockerization for convenience and portability.
 
