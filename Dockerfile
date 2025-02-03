@@ -1,5 +1,5 @@
 # build stage
-FROM alpine:latest as build
+FROM alpine:latest AS build
 RUN apk update &&\
     apk upgrade &&\ 
     apk add --no-cache linux-headers alpine-sdk cmake tcl openssl-dev zlib-dev
