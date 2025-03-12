@@ -4,8 +4,8 @@ RUN apk update &&\
     apk upgrade &&\ 
     apk add --no-cache linux-headers alpine-sdk cmake tcl openssl-dev zlib-dev
 WORKDIR /tmp
-RUN git clone https://github.com/Edward-Wu/srt-live-server.git
-RUN git clone https://github.com/Haivision/srt.git
+RUN git clone --depth 1 --branch v1.4.8 https://github.com/Edward-Wu/srt-live-server.git
+RUN git clone --depth 1 --branch v1.5.4 https://github.com/Haivision/srt.git
 WORKDIR /tmp/srt
 RUN ./configure && make && make install
 WORKDIR /tmp/srt-live-server
